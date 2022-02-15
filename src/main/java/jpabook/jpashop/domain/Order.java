@@ -10,9 +10,13 @@ public class Order {
     @Id @GeneratedValue // @GeneratedValue 만 입력하면 AUTO가 디폴트로 적용됨
     @Column(name = "ORDER_ID")
     private Long id;
-    @Column(name = "MEMBER_ID")
-    private Long memberId;
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID") // @Column() , @JoinColumn() <-- 동시에 쓰는 것이 아니고 선택하여 쓰는 것
+    private Member member;
+    
     private LocalDateTime orderDate; // 여기서는 편의상 구분하지 않고 LocalDateTime으로 한다
+    
     @Enumerated(EnumType.STRING)
     private OrderStatus status; // enum 타입 클래스를 생성할 것
 
@@ -24,12 +28,12 @@ public class Order {
         this.id = id;
     }
 
-    public Long getMemberId() {
-        return memberId;
+    public Member getMember() {
+        return member;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     public LocalDateTime getOrderDate() {
