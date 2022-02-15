@@ -1,6 +1,8 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -14,6 +16,11 @@ public class Member {
     private String zipcode; // ex) @Column(length = 10), 유니크 제약조건이나 인덱스도 @Table(indexes = ) 이렇게 직접 코드에 넣는 것이 좋다 
                             // 그래야 나중에 JPQL 쿼리 짤 때 이 어노테이션을 보고 손쉽게 코딩할 수 있는 것이다
     // Getter는 모두 만들어 주는데, Setter는 고민의 여지가 있다. 지금은 예제니 모두 만들어준다
+
+    // 아래 양방향 설정은 실습이라서 해 본 것. 실무에서는 Member에서 order 조회 자체가 비즈니스 로직이라고 보기 어려움. 아주 안 좋은 코드임.
+    @OneToMany(mappedBy = "member") // 연관관계 주인 설정
+    private List<Order> orders = new ArrayList<>(); // 관례) null point exception 방지를 위하여 생성하여 초기화한다
+    
     public Long getId() {
         return id;
     }
