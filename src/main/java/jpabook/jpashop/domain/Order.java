@@ -17,6 +17,10 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID") // @Column() , @JoinColumn() <-- 동시에 쓰는 것이 아니고 선택하여 쓰는 것
     private Member member;
 
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
     @OneToMany(mappedBy = "order") // 연관관계 주인 설정
     private List<OrderItem> orderItems = new ArrayList<>();
 
