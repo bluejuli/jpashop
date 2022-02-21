@@ -1,8 +1,6 @@
 package jpabook.jpashop;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,19 +19,12 @@ public class JpaMain {
         tx.begin();
 
         try{
-            // 단방향 관계만 설정하고 아래처럼 코딩해도 어플리케이션 개발에 전혀 문제 없다
-            // 그럼에도 불구하고 양방향 관계를 설정하는 것은 추후 조회나 개발상의 편의 때문임
-            // 또하나 이유: 실무에서는 JPQL도 많이 사용함. 이 떄 클래스 간에 참조의 편리성 때문에 양방향 설정이 필요 
-//            Order order = new Order();
-//            em.persist(order);
-//
-//            OrderItem orderItem = new OrderItem();
-//            orderItem.setOrder(order);
-//            em.persist(orderItem);
 
-            // 양방향 연관관계 시 코딩 방법
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("김영한");
+
+            em.persist(book);
 
             tx.commit();
         } catch(Exception e){

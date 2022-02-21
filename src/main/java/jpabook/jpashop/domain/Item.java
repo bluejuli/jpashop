@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Item {
+//@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 예제는 싱글 테이블로 설계했으므로 이렇게 설정한다
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")

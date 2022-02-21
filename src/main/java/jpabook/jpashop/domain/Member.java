@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity{
     
     @Id @GeneratedValue // @GeneratedValue 만 입력하면 AUTO가 디폴트로 적용됨
     @Column(name = "MEMBER_ID")

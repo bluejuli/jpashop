@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS") // DB에 order by가 예약어이기 때문에 테이블 명을 ORDERS로 보통 사용한다
-public class Order {
+public class Order extends BaseEntity{
 
     @Id @GeneratedValue // @GeneratedValue 만 입력하면 AUTO가 디폴트로 적용됨
     @Column(name = "ORDER_ID")
